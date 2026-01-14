@@ -22,3 +22,10 @@ GROUP BY m.title
 ORDER BY profit DESC
 LIMIT 0,10;
 
+
+-- Studio Performance. Find studios that have produced at least 3 movies and calculate their average IMDB rating. Identify which studio has the most consistent ratings (lowest standard deviation).--
+SELECT COUNT(movie_id) as number_of_movies, studio, AVG(imdb_rating) as average_rating,stddev(imdb_rating) as std FROM movies
+GROUP BY studio
+HAVING COUNT(movie_id) >=3
+ORDER BY std ASC
+LIMIT 1;
