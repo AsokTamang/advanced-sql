@@ -39,3 +39,8 @@ ORDER BY release_year DESC;
 SELECT * FROM movies
 WHERE release_year  > 2020
 HAVING imdb_rating>8;
+
+--movies from specific studios--
+SELECT * FROM movies
+WHERE studio IN ("Marvel Studios" , "Hombale Films");
+
