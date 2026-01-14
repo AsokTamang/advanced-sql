@@ -33,3 +33,9 @@ LIMIT 1;
 --based on release year--
 SELECT * FROM movies
 ORDER BY release_year DESC;
+
+
+--on specific year having ratings greater than 8--
+SELECT * FROM movies
+WHERE release_year  > 2020
+HAVING imdb_rating>8;
