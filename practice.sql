@@ -44,3 +44,10 @@ HAVING imdb_rating>8;
 SELECT * FROM movies
 WHERE studio IN ("Marvel Studios" , "Hombale Films");
 
+--specific movie--
+SELECT title,release_year FROM movies
+WHERE title LIKE "%THOR%"
+ORDER BY release_year;
+
+
+
