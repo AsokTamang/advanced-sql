@@ -29,3 +29,7 @@ GROUP BY studio
 HAVING COUNT(movie_id) >=3
 ORDER BY std ASC
 LIMIT 1;
+
+--based on release year--
+SELECT * FROM movies
+ORDER BY release_year DESC;
