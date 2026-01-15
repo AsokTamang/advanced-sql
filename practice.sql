@@ -103,3 +103,9 @@ ON m.movie_id = f.movie_id);
 --MOVIES BASED ON THEIR LANGUAGES--
 SELECT title,name FROM movies JOIN languages
 USING (language_id);
+
+--MOVIE BASED ON SPECIFIC LANGUAGE --
+SELECT title,name FROM movies JOIN languages
+USING (language_id)
+WHERE name = 'Telugu'
+;
