@@ -77,3 +77,15 @@ WHERE (IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budg
 SELECT MAX(IF(currency='INR',revenue*0.01,revenue) -IF(currency='INR',budget*0.01,budget)) FROM financials
 );
 
+
+--calculating the total profit of movies in unit million--
+SELECT title,F.total_profit_in_million FROM movies as m JOIN
+(SELECT movie_id,
+CASE
+	WHEN f.unit="billions" THEN (IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget))*1000
+    WHEN f.unit = "thousands" THEN (IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget))/1000
+    ELSE IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget)
+END AS total_profit_in_million
+FROM financials AS f) AS F
+ON m.movie_id = F.movie_id;
+
