@@ -50,4 +50,6 @@ WHERE title LIKE "%THOR%"
 ORDER BY release_year;
 
 
+--max year and min year--
+SELECT MIN(release_year) as oldest_date,MAX(release_year) as latest_date  FROM movies
 
