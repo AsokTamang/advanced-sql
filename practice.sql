@@ -114,3 +114,6 @@ WHERE name = 'Telugu'
 SELECT count(m.title) as Total,l.name  FROM movies as m JOIN languages as l
 ON m.language_id = l.language_id
 GROUP BY l.name;
+
+--using concat method--
+SELECT name,price,variant_name,variant_price, CONCAT(name,' ',variant_name) as final_name, ROUND((price + variant_price),2) as total_price  FROM variants CROSS JOIN items;
