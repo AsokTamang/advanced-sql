@@ -137,3 +137,11 @@ FROM movies as m JOIN movie_actor as ma
 ON ma.movie_id=m.movie_id
 JOIN actors as a ON a.actor_id=ma.actor_id
 group by m.movie_id;
+
+
+--concating the movies based on actors--
+SELECT group_concat(m.title) as movies, a.name
+FROM movies as m JOIN movie_actor as ma
+ON m.movie_id=ma.movie_id
+JOIN actors as a ON ma.actor_id = a.actor_id
+group by ma.actor_id;
