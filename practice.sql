@@ -1,3 +1,6 @@
+--FWGHO--
+--from->where->group by ->having->order by
+
 --Revenue Analysis by Industry. Find the total revenue and average budget for each industry, but only include movies released after 2010. Convert all currencies to a common unit for fair comparison.--
 SELECT SUM(
  IF(f.currency="INR", f.revenue*0.01, f.revenue)
@@ -65,3 +68,12 @@ GROUP BY release_year
 HAVING released_movies>=2
 ORDER BY release_year DESC
 LIMIT 10;
+
+
+--Highest box office winning movie--
+select m.title, IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget) as highest_boxoffice FROM financials as f JOIN movies as m
+ON m.movie_id=f.movie_id
+WHERE (IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget)) = (
+SELECT MAX(IF(currency='INR',revenue*0.01,revenue) -IF(currency='INR',budget*0.01,budget)) FROM financials
+);
+
