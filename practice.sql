@@ -58,3 +58,10 @@ select release_year,count(movie_id) from movies
 GROUP BY release_year
 ORDER BY release_year DESC
 LIMIT 10;
+
+--more than 2 movies released in a specific year--
+select release_year,count(movie_id) as released_movies from movies
+GROUP BY release_year
+HAVING released_movies>=2
+ORDER BY release_year DESC
+LIMIT 10;
