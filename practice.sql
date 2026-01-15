@@ -98,3 +98,8 @@ ON m.movie_id = f.movie_id)
 UNION
 (SELECT m.title,m.industry,f.unit FROM movies as m RIGHT JOIN financials as f
 ON m.movie_id = f.movie_id);
+
+
+--MOVIES BASED ON THEIR LANGUAGES--
+SELECT title,name FROM movies JOIN languages
+USING (language_id);
