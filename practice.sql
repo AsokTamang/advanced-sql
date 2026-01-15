@@ -128,3 +128,12 @@ CASE
 END AS Profit_in_million
 FROM movies as m JOIN financials as f
 ON m.movie_id=f.movie_id;
+
+
+--inorder to concat two column values we must use group_concat() method--
+SELECT m.movie_id,m.title,
+group_concat(a.name) as actors
+FROM movies as m JOIN movie_actor as ma
+ON ma.movie_id=m.movie_id
+JOIN actors as a ON a.actor_id=ma.actor_id
+group by m.movie_id;
