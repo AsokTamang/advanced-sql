@@ -85,6 +85,7 @@ CASE
 	WHEN f.unit="billions" THEN (IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget))*1000
     WHEN f.unit = "thousands" THEN (IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget))/1000
     ELSE IF(f.currency='INR',f.revenue*0.01,f.revenue) -IF(f.currency='INR',f.budget*0.01,f.budget)
+
 END AS total_profit_in_million
 FROM financials AS f) AS F
 ON m.movie_id = F.movie_id;
@@ -117,3 +118,13 @@ GROUP BY l.name;
 
 --using concat method--
 SELECT name,price,variant_name,variant_price, CONCAT(name,' ',variant_name) as final_name, ROUND((price + variant_price),2) as total_price  FROM variants CROSS JOIN items;
+
+--total profit easy one--
+SELECT title,currency,unit,budget,revenue,
+CASE
+  WHEN unit = "billions" THEN (IF(currency='INR',revenue*0.01,revenue) -IF(currency='INR',budget*0.01,budget))*1000
+  WHEN unit = "thousands" THEN (IF(currency='INR',revenue*0.01,revenue) -IF(currency='INR',budget*0.01,budget))/1000
+  ELSE IF(currency='INR',revenue*0.01,revenue) -IF(currency='INR',budget*0.01,budget)
+END AS Profit_in_million
+FROM movies as m JOIN financials as f
+ON m.movie_id=f.movie_id;
