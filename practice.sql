@@ -109,3 +109,8 @@ SELECT title,name FROM movies JOIN languages
 USING (language_id)
 WHERE name = 'Telugu'
 ;
+
+--counting the number of movies released per language--
+SELECT count(m.title) as Total,l.name  FROM movies as m JOIN languages as l
+ON m.language_id = l.language_id
+GROUP BY l.name;
