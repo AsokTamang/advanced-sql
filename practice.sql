@@ -145,3 +145,14 @@ FROM movies as m JOIN movie_actor as ma
 ON m.movie_id=ma.movie_id
 JOIN actors as a ON ma.actor_id = a.actor_id
 group by ma.actor_id;
+
+
+--top 5 actors based on the number of movies played--
+SELECT group_concat(m.title separator ",")
+ as movies, a.name, count(m.movie_id) as count
+FROM movies as m JOIN movie_actor as ma
+ON m.movie_id=ma.movie_id
+JOIN actors as a ON ma.actor_id = a.actor_id
+group by a.actor_id
+order by count DESC
+LIMIT 5;
