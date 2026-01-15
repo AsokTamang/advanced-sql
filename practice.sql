@@ -53,3 +53,8 @@ ORDER BY release_year;
 --max year and min year--
 SELECT MIN(release_year) as oldest_date,MAX(release_year) as latest_date  FROM movies
 
+--counting the number of movies released in the specific year, ordering from the latest release year--
+select release_year,count(movie_id) from movies
+GROUP BY release_year
+ORDER BY release_year DESC
+LIMIT 10;
