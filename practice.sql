@@ -89,3 +89,12 @@ END AS total_profit_in_million
 FROM financials AS f) AS F
 ON m.movie_id = F.movie_id;
 
+--the feature of offset is that from which position to start--
+
+
+--FULL OUTER JOIN--
+(SELECT m.title,m.industry,f.unit FROM movies as m LEFT JOIN financials as f
+ON m.movie_id = f.movie_id)
+UNION
+(SELECT m.title,m.industry,f.unit FROM movies as m RIGHT JOIN financials as f
+ON m.movie_id = f.movie_id);
